@@ -1,7 +1,7 @@
 ﻿
             ProcessInput processor = new ProcessInput();
             string textFile =
-               "C:\\Developer\\Projects\\AdventOfCode\\AdventofCode2019\\AdventofCode2019\\Day1Part1Input.txt";
+               @"C:\Developer\Projects\AdventOfCode\AdventofCode2019\AdventofCode2019\Day1Part1Input.txt";
             List<int> inputList = processor.GenerateListOfInputs(textFile);
             int answer = processor.ProcessAnswer(inputList);
 			
