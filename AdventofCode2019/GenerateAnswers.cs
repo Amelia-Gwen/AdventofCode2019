@@ -10,38 +10,59 @@ namespace AdventofCode2019
     {
         internal int GenerateAnswerDayTwo(List<int> inputList)
         {
-            int index = 0;
+            int noun = 0;
+            int verb = 0;
+            int counter = 0;
 
             while (true)
             {
-                int tempVal = 0;
-                if (inputList[index] == 99)
+                List<int> answerList = new List<int>(inputList);
+                answerList[1] = noun;
+                answerList[2] = verb;
+                int index = 0;
+
+                while (true)
                 {
-                    break;
+                    int tempVal = 0;
+                    if (answerList[index] == 99) { break; }
+                    if (answerList[index] == 1)
+                    {
+                        ++index;
+                        tempVal = answerList[answerList[index]];
+                        ++index;
+                        tempVal += answerList[answerList[index]];
+                        ++index;
+                        answerList[answerList[index]] = tempVal;
+                        ++index;
+                    }
+                    else
+                    {
+                        ++index;
+                        tempVal = answerList[answerList[index]];
+                        ++index;
+                        tempVal *= answerList[answerList[index]];
+                        ++index;
+                        answerList[answerList[index]] = tempVal;
+                        ++index;
+                    }
                 }
-                if (inputList[index] == 1)
+
+                Console.WriteLine(counter);
+                counter++;
+
+                if (answerList[0] == 19690720) { break; }
+                if (noun < 100)
                 {
-                    ++index;
-                    tempVal = inputList[inputList[index]];
-                    ++index;
-                    tempVal += inputList[inputList[index]];
-                    ++index;
-                    inputList[inputList[index]] = tempVal;
-                    ++index;
+                    ++noun;
                 }
                 else
                 {
-                    ++index;
-                    tempVal = inputList[inputList[index]];
-                    ++index;
-                    tempVal *= inputList[inputList[index]];
-                    ++index;
-                    inputList[inputList[index]] = tempVal;
-                    ++index;
+                    noun = 0;
+                    ++verb;
                 }
             }
 
-            return inputList[0];
+            return noun * 100 + verb;
         }
     }
 }
