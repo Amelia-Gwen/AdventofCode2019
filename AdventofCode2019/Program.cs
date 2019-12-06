@@ -1,8 +1,7 @@
 using System;
+using System.IO;
+using System.Drawing;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdventofCode2019
 {
@@ -11,12 +10,20 @@ namespace AdventofCode2019
         static void Main(string[] args)
         {
             string inputFile =
-                 @"C:\Developer\Projects\AdventOfCode\AdventofCode2019\AdventofCode2019\Day2Input.txt";
+                 @"C:\Developer\Projects\AdventOfCode\AdventofCode2019\AdventofCode2019\Day3Input.txt";
             ProcessInput processor = new ProcessInput();
             GenerateAnswers generator = new GenerateAnswers();
+            int answer = 0;
 
-            List<int> values = processor.GenerateListDayTwo(inputFile);
-            int answer = generator.GenerateAnswerDayTwo(values);
+            if (File.Exists(inputFile))
+            {
+                string[] wires = File.ReadAllLines(inputFile);
+                List<string> one = processor.GenerateTokens(wires[0]);
+                List<string> two = processor.GenerateTokens(wires[1]);
+                List<Point> wireOne = processor.GenerateListOfPoints(one);
+                List<Point> wireTwo = processor.GenerateListOfPoints(two);
+                answer = generator.GenerateAnswerDayThree(wireOne, wireTwo);
+            }
 
             Console.WriteLine(answer);
             Console.ReadKey();

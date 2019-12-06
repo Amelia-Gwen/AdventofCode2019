@@ -1,8 +1,6 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdventofCode2019
 {
@@ -63,6 +61,38 @@ namespace AdventofCode2019
             }
 
             return noun * 100 + verb;
+        }
+
+        internal int GenerateAnswerDayThree(List<Point> one, List<Point> two)
+        {
+            List<Point> crossings = new List<Point>();
+
+            foreach(Point pointOne in one)
+            {
+                foreach(Point pointTwo in two)
+                {
+                    if (pointOne.Equals(pointTwo))
+                    {
+                        crossings.Add(new Point((Size)pointOne));
+                    }
+                }
+            }
+
+            int answer = Int32.MaxValue;
+            foreach(Point crossing in crossings)
+            {
+                int x = crossing.X;
+                if (x < 0) { x *= -1; }
+                int y = crossing.Y;
+                if (y < 0) { y *= -1; }
+
+                if (x + y < answer)
+                {
+                    answer = x + y;
+                }
+            }
+
+            return answer;
         }
     }
 }

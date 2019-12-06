@@ -1,15 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
 
 namespace AdventofCode2019
 {
     class ProcessInput
     {
-
         // Day 1 Input process.
         internal List<int> GenerateListOfInputs(string textFile)
         {
@@ -41,6 +38,65 @@ namespace AdventofCode2019
 
             return listOfInputs;
         }
+
+        // Tokenizer for Day 3
+        internal List<string> GenerateTokens(string untokenizedString)
+        {
+            string[] values = untokenizedString.Split(',');
+            List<string> tokens = new List<string>();
+            foreach (string token in values)
+            {
+                tokens.Add(token);
+            }
+            return tokens;
+        }
+        // Process Tokens into Points Day 3
+        internal List<Point> GenerateListOfPoints(List<string> tokens)
+        {
+            int x = 0;
+            int y = 0;
+            List<Point> points = new List<Point>();
+
+            foreach(string token in tokens)
+            {
+                int distance = Int32.Parse(token.Substring(1));
+                if(token[0] == 'U')
+                {
+                    for (int i = 0; i < distance; ++i)
+                    {
+                        ++x;
+                        points.Add(new Point(x, y));
+                    }
+                }
+                else if (token[0] == 'R')
+                {
+                    for (int i = 0; i < distance; ++i)
+                    {
+                        ++y;
+                        points.Add(new Point(x, y));
+                    }
+                }
+                else if (token[0] == 'D')
+                {
+                    for (int i = 0; i < distance; ++i)
+                    {
+                        --x;
+                        points.Add(new Point(x, y));
+                    }
+                }
+                else if (token[0] == 'L')
+                {
+                    for (int i = 0; i < distance; ++i)
+                    {
+                        --y;
+                        points.Add(new Point(x, y));
+                    }
+                }
+            }
+
+            return points;
+        }
+
 
         // This method should move to the generate answer class and be named for the day it solves.
         // It also solves part two only.
