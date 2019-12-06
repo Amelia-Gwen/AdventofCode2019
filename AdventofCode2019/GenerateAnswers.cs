@@ -94,5 +94,31 @@ namespace AdventofCode2019
 
             return answer;
         }
+
+        internal long GenerateAnswerDayThreePartTwo(List<Point> one, List<Point> two)
+        {
+            long answer = Int64.MaxValue;
+            long counterOne = 0;
+            long counterTwo = 0;
+            foreach (Point pointOne in one)
+            {
+                ++counterOne;
+                counterTwo = 0;
+                foreach (Point pointTwo in two)
+                {
+                    ++counterTwo;
+                    if (pointOne.Equals(pointTwo))
+                    {
+                        long distance = counterOne + counterTwo;
+                        if (distance < answer)
+                        {
+                            answer = distance;
+                        }
+                    }
+                }
+            }
+
+            return answer;
+        }
     }
 }
