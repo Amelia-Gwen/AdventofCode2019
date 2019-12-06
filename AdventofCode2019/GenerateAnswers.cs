@@ -120,5 +120,34 @@ namespace AdventofCode2019
 
             return answer;
         }
+
+        internal int GenerateAnswerDayFour()
+        {
+            // Preset range: 171309-643603
+
+            int answer = 0;
+            bool hasAdjacentMatch = false;
+            int rangeStart = 171309;
+            int rangeEnd = 643603;
+            
+            for(int i = rangeStart; i <= rangeEnd; ++i)
+            {
+                hasAdjacentMatch = false;
+                string password = i.ToString();
+                if (password[0] == password[1] || password[1] == password[2] || password[2] == password[3] ||
+                    password[3] == password[4] || password[4] == password[5])
+                {
+                    hasAdjacentMatch = true;
+                }
+                if (hasAdjacentMatch && password[0] <= password[1] && password[1] <= password[2] &&
+                    password[2] <= password[3] && password[3] <= password[4] && password[4] <= password[5])
+                {
+                    ++answer;
+                }
+            }
+
+
+            return answer;
+        }
     }
 }
