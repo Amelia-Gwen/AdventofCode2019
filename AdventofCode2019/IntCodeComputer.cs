@@ -110,6 +110,116 @@ namespace AdventofCode2019
                         ++index;
                     }
                 }
+                else if (opcode[opcodeIndex] == '5')
+                {
+                    bool isNonZero;
+                    --opcodeIndex;
+                    --opcodeIndex;
+                    if (opcodeIndex < 0 || opcode[opcodeIndex] == '0')
+                    {
+                        isNonZero = program[program[index]] != 0;
+                        ++index;
+                    }
+                    else
+                    {
+                        isNonZero = program[index] != 0;
+                        ++index;
+                    }
+                    --opcodeIndex;
+                    if (opcodeIndex < 0 || opcode[opcodeIndex] == '0')
+                    {
+                        int tempIndex = index++;
+                        if (isNonZero) { index = program[program[tempIndex]]; }
+                    }
+                    else
+                    {
+                        int tempIndex = index++;
+                        if (isNonZero) { index = program[tempIndex]; }
+                    }
+                }
+                else if (opcode[opcodeIndex] == '6')
+                {
+                    bool isZero;
+                    --opcodeIndex;
+                    --opcodeIndex;
+                    if (opcodeIndex < 0 || opcode[opcodeIndex] == '0')
+                    {
+                        isZero = program[program[index]] == 0;
+                        ++index;
+                    }
+                    else
+                    {
+                        isZero = program[index] == 0;
+                        ++index;
+                    }
+                    --opcodeIndex;
+                    if (opcodeIndex < 0 || opcode[opcodeIndex] == '0')
+                    {
+                        int tempIndex = index++;
+                        if (isZero) { index = program[program[tempIndex]]; }
+                    }
+                    else
+                    {
+                        int tempIndex = index++;
+                        if (isZero) { index = program[tempIndex]; }
+                    }
+                    
+
+                }
+                else if (opcode[opcodeIndex] == '7')
+                {
+                    bool less;
+                    --opcodeIndex;
+                    --opcodeIndex;
+                    if (opcodeIndex < 0 || opcode[opcodeIndex] == '0')
+                    {
+                        tempVal = program[program[index]];
+                    }
+                    else
+                    {
+                        tempVal = program[index];
+                    }
+                    ++index;
+                    --opcodeIndex;
+                    if (opcodeIndex < 0 || opcode[opcodeIndex] == '0')
+                    {
+                        less = tempVal < program[program[index]];
+                    }
+                    else
+                    {
+                        less = tempVal < program[index];
+                    }
+                    ++index;
+                    program[program[index]] = less ? 1 : 0;
+                    ++index;
+                }
+                else if (opcode[opcodeIndex] == '8')
+                {
+                    bool equal;
+                    --opcodeIndex;
+                    --opcodeIndex;
+                    if (opcodeIndex < 0 || opcode[opcodeIndex] == '0')
+                    {
+                        tempVal = program[program[index]];
+                    }
+                    else
+                    {
+                        tempVal = program[index];
+                    }
+                    ++index;
+                    --opcodeIndex;
+                    if (opcodeIndex < 0 || opcode[opcodeIndex] == '0')
+                    {
+                        equal = tempVal == program[program[index]];
+                    }
+                    else
+                    {
+                        equal = tempVal == program[index];
+                    }
+                    ++index;
+                    program[program[index]] = equal ? 1 : 0;
+                    ++index;
+                }
             }
         }
     }
