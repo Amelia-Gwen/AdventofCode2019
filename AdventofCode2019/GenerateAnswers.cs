@@ -14,9 +14,11 @@ namespace AdventofCode2019
 
             while (true)
             {
-                List<int> answerList = new List<int>(inputList);
-                answerList[1] = noun;
-                answerList[2] = verb;
+                List<int> answerList = new List<int>(inputList)
+                {
+                    [1] = noun,
+                    [2] = verb
+                };
                 int index = 0;
 
                 while (true)

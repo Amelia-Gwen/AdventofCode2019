@@ -1,0 +1,4 @@
+﻿            GenerateAnswers generator = new GenerateAnswers();
+            int answer = generator.GenerateAnswerDayFour();
+            Console.WriteLine(answer);
+            Console.ReadKey();

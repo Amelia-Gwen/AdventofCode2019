@@ -22,7 +22,7 @@ namespace AdventofCode2019
 
             return listOfInputs;
         }
-
+        
         internal List<int> GenerateListDayTwo(string textFile)
         {
             List<int> listOfInputs = new List<int>();

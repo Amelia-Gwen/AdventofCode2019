@@ -1,7 +1,4 @@
 using System;
-using System.IO;
-using System.Drawing;
-using System.Collections.Generic;
 
 namespace AdventofCode2019
 {
@@ -9,9 +6,12 @@ namespace AdventofCode2019
     {
         static void Main(string[] args)
         {
-            GenerateAnswers generator = new GenerateAnswers();
-            int answer = generator.GenerateAnswerDayFour();
-            Console.WriteLine(answer);
+            string inputFile =
+                 @"C:\Developer\Projects\AdventOfCode\AdventofCode2019\AdventofCode2019\Day5Input.txt";
+            IntCodeComputer computer = new IntCodeComputer();
+            computer.InitializeProgram(inputFile);
+            computer.ReadProgram();
+            Console.WriteLine();
             Console.ReadKey();
         }
     }
