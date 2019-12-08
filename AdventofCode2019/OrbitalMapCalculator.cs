@@ -69,5 +69,60 @@ namespace AdventofCode2019
             }
             return orbits;
         }
+
+        public int DistanceToSanta()
+        {
+            string yourID = "YOU";
+            string santasID = "SAN";
+            Node you = null;
+            Node santa = null;
+            
+            foreach (Node node in orbitalMap)
+            {
+                if (node.ID == yourID)
+                {
+                    you = node;
+                }
+                if (node.ID == santasID)
+                {
+                    santa = node;
+                }
+            }
+
+            List<Node> youToCenter = new List<Node>();
+            List<Node> santaToCenter = new List<Node>();
+            AddNodesTilCenter(you, youToCenter);
+            AddNodesTilCenter(santa, santaToCenter);
+            Node pivotNode = FindPivotNode(youToCenter, santaToCenter);
+
+            int youToPivot = you.numberOfOrbits - pivotNode.numberOfOrbits - 1;
+            int santaToPivot = santa.numberOfOrbits - pivotNode.numberOfOrbits - 1;
+
+            return youToPivot + santaToPivot;
+        }
+
+        private void AddNodesTilCenter(Node sentinal, List<Node> nodes)
+        {
+            while (sentinal.orbitingNode != null)
+            {
+                nodes.Add(sentinal);
+                sentinal = sentinal.orbitingNode;
+            }
+        }
+
+        private Node FindPivotNode(List<Node> lhs, List<Node> rhs)
+        {
+            foreach (Node leftNode in lhs)
+            {
+                foreach (Node rightNode in rhs)
+                {
+                    if (leftNode.ID == rightNode.ID)
+                    {
+                        return leftNode;
+                    }
+                }
+            }
+            return null;
+        }
     }
 }
