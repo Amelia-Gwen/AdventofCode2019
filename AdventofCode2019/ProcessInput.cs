@@ -97,6 +97,24 @@ namespace AdventofCode2019
             return points;
         }
 
+        // Day 6 tokenizer
+        internal List<Tuple<string, string>> GenerateOrbitalPairs(string textFile)
+        {
+            List<Tuple<string, string>> orbitalTokens = new List<Tuple<string, string>>();
+
+            if (File.Exists(textFile))
+            {
+                string[] tokenPairs = File.ReadAllLines(textFile);
+                foreach (string pair in tokenPairs)
+                {
+                    string[] splitPair = pair.Split(')');
+                    orbitalTokens.Add(new Tuple<string, string>(splitPair[0], splitPair[1]));
+                }
+            }
+
+            return orbitalTokens;
+        }
+
 
         // This method should move to the generate answer class and be named for the day it solves.
         // It also solves part two only.
