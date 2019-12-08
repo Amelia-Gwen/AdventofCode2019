@@ -8,15 +8,11 @@ namespace AdventofCode2019
         static void Main(string[] args)
         {
             string inputFile =
-                 @"C:\Developer\Projects\AdventOfCode\AdventofCode2019\AdventofCode2019\Day6Input.txt";
-            ProcessInput processor = new ProcessInput();
-            OrbitalMapCalculator calculator = new OrbitalMapCalculator();
-            List<Tuple<string, string>> orbitalPairs = processor.GenerateOrbitalPairs(inputFile);
-            calculator.ReadTokens(orbitalPairs);
+                 @"C:\Developer\Projects\AdventOfCode\AdventofCode2019\AdventofCode2019\Day7Input.txt";
 
-            int answer = calculator.DistanceToSanta();
 
-            Console.WriteLine(answer);
+
+            Console.WriteLine();
             Console.ReadKey();
         }
     }
